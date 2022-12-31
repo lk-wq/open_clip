@@ -200,8 +200,8 @@ class CLIP(nn.Module):
         x = self.ln_final(x)  # [batch_size, n_ctx, transformer.width]
         print("x shape",x.size())
         # take features from the eot embedding (eot_token is the highest number in each sequence)
-        x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] @ self.text_projection
-        return F.normalize(x, dim=-1) if normalize else x
+#         x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] @ self.text_projection
+        return x#F.normalize(x, dim=-1) if normalize else x
 
     def forward(self, image, text):
         image_features = self.encode_image(image, normalize=True)
